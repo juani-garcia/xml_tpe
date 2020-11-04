@@ -7,12 +7,12 @@
     return
         <city>
             <name>$c/city/@name</name>
-            <temperature unit=$c/temperature/@unit> $c/temperature/@value </temperature>
-            <feels_like unit=$c/feels_like/@unit> $c/feels_like/@value </feels_like>
-            <humidity unit=$c/humidity/@unit> $c/humidity/@value </humidity>
-            <pressure unit=$c/pressure/@unit> $c/pressure/@value </pressure>
+            <temperature unit="$c/temperature/@unit"> $c/temperature/@value </temperature>
+            <feels_like unit="$c/feels_like/@unit"> $c/feels_like/@value </feels_like>
+            <humidity unit="$c/humidity/@unit"> $c/humidity/@value </humidity>
+            <pressure unit="$c/pressure/@unit"> $c/pressure/@value </pressure>
             <clouds> $c/clouds/@name </clouds>
-            <weather icon=$c/pressure/@icon> $c/weather/@value </weather>
+            <weather icon="$c/pressure/@icon"> $c/weather/@value </weather>
         </city>
     } 
     </country>

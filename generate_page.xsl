@@ -43,18 +43,20 @@
                 </style>
             </head>
             <body>
-                <h1>Weather status on <xsl:value-of select="sum(//country/cities/city)"> Cities around the World</h1>
+                <h1>Weather status on <xsl:value-of select="sum(//country/cities/city)"></xsl:value-of> Cities around the World</h1>
                 <xsl:apply-templates/>
             </body>
         </html>
+    </xsl:template>
+
     <xsl:template match="ClientError">
-        <h3><xsl:value-of select="//message/text()"></h3>
-        <h3>Error code: <xsl:value-of select="//cod/text()"></h3>
+        <h3><xsl:value-of select="//message/text()"></xsl:value-of></h3>
+        <h3>Error code: <xsl:value-of select="//cod/text()"></xsl:value-of></h3>
     </xsl:template>
 
     <xsl:template match="country">
         <!-- Tabla -->
-        <h2>Weather on <xsl:value-of select="sum(//cities/city)"> of <xsl:value-of select="//name"></h2>
+        <h2>Weather on <xsl:value-of select="sum(//cities/city)"></xsl:value-of> of <xsl:value-of select="//name"></xsl:value-of></h2>
         <table>
             <tr>
                 <th>City</th>
@@ -79,7 +81,7 @@
             <td><xsl:value-of select="hummidity"/></td>
             <td><xsl:value-of select="pressure"/></td>
             <td><xsl:value-of select="clouds"/></td>
-            <td><xsl:value-of select="weather"/> <img src="" alt="Flowers in Chania"> </td>
+            <td><xsl:value-of select="weather"/> <img src="" alt="Flowers in Chania"> </img></td>
         </tr>
     </xsl:template>
 </xsl:stylesheet>
