@@ -43,15 +43,19 @@
                 </style>
             </head>
             <body>
-                <h1>Weather status on <xsl:value-of select="sum(//country/)"> Cities around the World</h1>
+                <h1>Weather status on <xsl:value-of select="sum(//country/cities/city)"> Cities around the World</h1>
                 <xsl:apply-templates/>
             </body>
         </html>
+    <xsl:template match="ClientError">
+        <h3><xsl:value-of select="//message/text()"></h3>
+        <h3>Error code: <xsl:value-of select="//cod/text()"></h3>
     </xsl:template>
-    <xsl:template match="libros"/>
-    <xsl:template match="usuarios">
+
+    <xsl:template match="country">
         <!-- Tabla -->
-        <table border="2">
+        <h2>Weather on <xsl:value-of select="sum(//cities/city)"> of <xsl:value-of select="//name"></h2>
+        <table>
             <tr>
                 <th>City</th>
                 <th>Temperature</th>
@@ -66,21 +70,16 @@
             </tbody>
          </table>
     </xsl:template>
-    <xsl:template match="usuario/datos_personales">
+    <xsl:template match="cities/city">
         <tr>
             <!-- Datos de la tabla -->
-            <td><xsl:value-of select="nombre"/></td>
-            <td><xsl:value-of select="direccion"/></td>
-            <td><xsl:value-of select="telefono"/></td>
-            <td>
-                <xsl:element name="a">
-                    <xsl:attribute name="href">
-                        prestamos_<xsl:value-of select="../@id"/>.html
-                    </xsl:attribute>
-                    Prestamos
-                </xsl:element>
-            </td>
+            <td><xsl:value-of select="name"/></td>
+            <td><xsl:value-of select="temperature"/></td>
+            <td><xsl:value-of select="feels_like"/></td>    <!-- hay que ver las unidades -->
+            <td><xsl:value-of select="hummidity"/></td>
+            <td><xsl:value-of select="pressure"/></td>
+            <td><xsl:value-of select="clouds"/></td>
+            <td><xsl:value-of select="weather"/> <img src="" alt="Flowers in Chania"> </td>
         </tr>
     </xsl:template>
-    <xsl:template match="prestamos"/>
 </xsl:stylesheet>
