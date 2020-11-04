@@ -17,4 +17,4 @@ curl "https://api.openweathermap.org/data/2.5/find?lat=${2}&lon=${3}&cnt=${1}&mo
 
 java net.sf.saxon.Query extract_weather_data.xq > weather_data.xml
 
-java net.sf.saxon.Transform -s:weather_data.xml -xsl:generate_page.xsl [ -o:weather_page.html ]
+java net.sf.saxon.Transform -s:weather_data.xml -xsl:generate_page.xsl -o:weather_page.html 
