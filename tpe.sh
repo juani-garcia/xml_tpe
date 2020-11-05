@@ -13,18 +13,22 @@
 #
 # Por último el script debe utilizar un XSLT para generar el HTML final. (Esto se hace fuera del script, el script solo corre el codigo).
 
-if [ [$1 =~ ^-?[0-9]+$ -a $1 -ge 0 ] -a $1 -le 90 ] 
-    then
-        echo error_log.
-        # \d+(\.\d{1,5})?
-    else
+let error = 0
+echo <results> > weather_data.xml
 
-curl "https://api.openweathermap.org/data/2.5/find?lat=${2}&lon=${3}&cnt=${1}&mode=xml&appid=${OPENWEATHER_API}" -o ./data/data.xml
+# if [ $# -ne 3 ]
+# then
+#     let $error = 1
+#     echo <error>Incorrect number of arguments</error> >> weather_data.xml
+# else
+#     if [ $1 =~ \d+(\.\d{1,5})?]
 
-java net.sf.saxon.Query extract_weather_data.xq > weather_data.xml
+# fi
 
-java net.sf.saxon.Transform -s:weather_data.xml -xsl:generate_page.xsl -o:weather_page.html 
-
+if [ $error -ne 1 ]
+    curl "https://api.openweathermap.org/data/2.5/find?lat=${2}&lon=${3}&cnt=${1}&mode=xml&appid=${OPENWEATHER_API}" -o ./data/data.xml
+    java net.sf.saxon.Query extract_weather_data.xq > weather_data.xml
 fi
 
+java net.sf.saxon.Transform -s:weather_data.xml -xsl:generate_page.xsl -o:weather_page.html 
 

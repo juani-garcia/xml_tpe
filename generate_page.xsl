@@ -7,9 +7,7 @@
         <html>
             <style>
 
-                
-
-        </style>
+            </style>
         <head>
                 <title>Weather status</title>
                 <style>
@@ -17,12 +15,27 @@
             </head>
             <body>
                 <h1>Weather status on <xsl:value-of select="count(//results/country/cities/city)"></xsl:value-of> Cities around the World</h1>
-                <xsl:apply-templates/>
+                <xsl:if test="count(//results/ClientError) > 0"><xsl:apply-templates select="ClientError"/></xsl:if>
+                <xsl:if test="count(//results/ClientError) < 1"><xsl:apply-templates select="country"/></xsl:if>                
             </body>
         </html> 
     </xsl:template>
 
-   
+    <xsl:template match="ClientError">
+        <table class="ErrorTable" border="2">
+            <tr>
+                <th>Error</th>
+                <th>Description</th>    
+            <tr>
+            <tbody>
+                <xsl:apply-templates select="error" />
+            </tbdoy>
+        </table>
+    </xsl:template>
+
+    <xsd:template match="error">
+        
+    </xsd:template>
 
     <xsl:template match="country">
         <!-- Tabla -->
