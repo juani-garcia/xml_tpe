@@ -1,0 +1,4 @@
+- Analizar por que en la comparacion de float en el shell el -lt se come la parte decimal
+- colores y diseño del html
+- on:hover para que cuando te paras arriba de una ciudad te muestre un fondo de como esta actualmente (En lo posible que el fondo sea un gif)
+- Terminar informe

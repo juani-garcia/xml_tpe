@@ -1,7 +1,107 @@
-<html><style></style><head>
+<html><style>
+
+            html {
+                margin-left: auto;
+                margin-right: auto;
+                vertical-align: middle;
+                text-align: center;
+            }
+
+            .title{
+                margin-bottom: 15px;
+                margin-top: 80px;
+            }
+
+            .title, .subtitle, .subsubtitle {
+                color: #e6ee9c;
+            }
+
+            @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+                        
+            *, *:before, *:after {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+            }
+
+            body {
+              transform: scale(1.2);
+              background: #004d40;
+              font-family: 'Open Sans', sans-serif;
+            }
+            table {
+              background: #012B39;
+              border-radius: 0.25em;
+              border-collapse: collapse;
+            
+                margin-left: auto;
+                margin-bottom: 20px;
+                margin-right: auto;
+                margin-top: 20px;
+              
+            }
+            th {
+              border-bottom: 1px solid #364043;
+              color: #E2B842;
+              font-size: 0.85em;
+              font-weight: 600;
+              padding: 0.5em 1em;
+              text-align: left;
+            }
+            td {
+              color: #fff;
+              font-weight: 400;
+              padding: 0.65em 1em;
+            }
+            .disabled td {
+              color: #4F5F64;
+            }
+            tbody tr {
+              transition: background 0.25s ease;
+            }
+            tbody tr:hover {
+              background: #014055;
+            }
+
+            img {
+                margin-left: 15.1px;
+                margin-right: auto;
+                vertical-align: middle;
+                text-align: center;
+            }
+
+            .ErrorTable {
+                background: #b71c1c;
+            }
+
+            a:hover {
+                color: blue;
+                text-decoration: inherit; 
+              }
+
+            a {
+              color: #fff;
+              text-decoration: none;
+            }
+
+            h3 {
+                transform: scale(0.8);
+            }
+
+            </style><head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
       <title>Weather status</title><style></style></head>
    <body>
-      <h1>Weather status on 0 Cities around the World</h1>
+      <h1 class="title">No Cities shown.</h1>
+      <table class="ErrorTable">
+         <tr>
+            <th>Error</th>
+         </tr>
+         <tbody>
+            <tr>
+               <td>wrong latitude</td>
+            </tr>
+         </tbody>
+      </table>
    </body>
 </html>

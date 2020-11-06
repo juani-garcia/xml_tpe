@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Para acceder a los parámetros del .sh se usa "$1", "$2", etc...
 # Todo texto que se imprima debe estar en ingles.
 # El .sh debe acceder a los datos de la api: 
@@ -13,19 +15,43 @@
 #
 # Por último el script debe utilizar un XSLT para generar el HTML final. (Esto se hace fuera del script, el script solo corre el codigo).
 
-# let error = 0
-# echo <results> > weather_data.xml
 
-# if [ $# -ne 3 ]
-# then
-#     let $error = 1
-#     echo <error>Incorrect number of arguments</error> >> weather_data.xml
-# else
-#     if [ $1 =~ \d+(\.\d{1,5})?]
+function test(){
+    echo "<results>" > ./weather_data.xml
+    let error 0
+    if [[ $# -ne 3 ]]
+    then
+        error=1
+        echo "<error>Three arguments needed</error>" >> ./weather_data.xml
+    else
+        if [[ ! $1 =~ ^[0-9]+$ ]] || [[ $1 -gt 50 ]] || [[ $1 -lt 1 ]]
+        then
+            error=1
+            echo "<error>Count must be a positive integer</error>" >> ./weather_data.xml
+        fi
+        if [[ ! $2 =~ ^[+-]?[0-9]+\.?[0-9]*$ ]] || [[ $2 -lt -90 ]] || [[ $2 -gt 90 ]]
+        then
+            error=1
+            echo "<error>Latitude must be a decimal between -90 and 90</error>" >> ./weather_data.xml
+        fi
+        if [[ ! $3 =~ ^[+-]?[0-9]+\.?[0-9]*$ ]] || [[ $3 -lt -180 ]] || [[ $2 -gt 180 ]]
+        then
+            error=1
+            echo "<error>Longitude must be a decimal between -180 and 180</error>" >> ./weather_data.xml
+        fi
+    fi
 
-# fi
+    echo "</results>" >> ./data/data.xml
+    return $error
+}
 
-curl "https://api.openweathermap.org/data/2.5/find?lat=${2}&lon=${3}&cnt=${1}&mode=xml&appid=${OPENWEATHER_API}" -o ./data/data.xml
-java net.sf.saxon.Query extract_weather_data.xq > weather_data.xml
+test $1 $2 $3
+
+if [[ $? -eq 0 ]]
+then
+    curl "https://api.openweathermap.org/data/2.5/find?lat=${2}&lon=${3}&cnt=${1}&mode=xml&appid=${OPENWEATHER_API}" -o ./data/data.xml
+    java net.sf.saxon.Query extract_weather_data.xq > weather_data.xml
+fi
+
 java net.sf.saxon.Transform -s:weather_data.xml -xsl:generate_page.xsl -o:weather_page.html 
 

@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ClientError><cod>404</cod><message>no results</message></ClientError>
+<ClientError><cod>400</cod><message>wrong latitude</message></ClientError>
