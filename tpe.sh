@@ -13,8 +13,8 @@
 #
 # Por último el script debe utilizar un XSLT para generar el HTML final. (Esto se hace fuera del script, el script solo corre el codigo).
 
-let error = 0
-echo <results> > weather_data.xml
+# let error = 0
+# echo <results> > weather_data.xml
 
 # if [ $# -ne 3 ]
 # then
@@ -25,10 +25,7 @@ echo <results> > weather_data.xml
 
 # fi
 
-if [ $error -ne 1 ]
-    curl "https://api.openweathermap.org/data/2.5/find?lat=${2}&lon=${3}&cnt=${1}&mode=xml&appid=${OPENWEATHER_API}" -o ./data/data.xml
-    java net.sf.saxon.Query extract_weather_data.xq > weather_data.xml
-fi
-
+curl "https://api.openweathermap.org/data/2.5/find?lat=${2}&lon=${3}&cnt=${1}&mode=xml&appid=${OPENWEATHER_API}" -o ./data/data.xml
+java net.sf.saxon.Query extract_weather_data.xq > weather_data.xml
 java net.sf.saxon.Transform -s:weather_data.xml -xsl:generate_page.xsl -o:weather_page.html 
 
