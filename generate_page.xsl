@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE html>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-
     <xsl:template match="results">
         <html>
            <style>
@@ -31,7 +30,6 @@
             }
 
             body {
-              transform: scale(1.2);
               background: #004d40;
               font-family: 'Open Sans', sans-serif;
             }
@@ -67,10 +65,11 @@
             }
             tbody tr:hover {
               background: #014055;
+
             }
 
             img {
-                margin-left: 15.1px;
+                margin-left: 14.5px;
                 margin-right: auto;
                 vertical-align: middle;
                 text-align: center;
@@ -90,11 +89,48 @@
               text-decoration: none;
             }
 
-            h3 {
-                transform: scale(0.8);
-            }
-
             </style>
+
+            <script type="text/javascript">
+      
+                function changeBackground(desc)
+                {
+                     if (desc == '01d'){
+                        document.body.style.backgroundImage = 'url(https://wallpapercave.com/wp/ZM3Cl68.jpg)';
+                    } else if ( desc == '01n') {
+                        document.body.style.backgroundImage = 'url(https://webnerhouse.files.wordpress.com/2017/11/p1200029_nightsky.jpg)';
+                    } else if ( desc == '02d') {  
+                        document.body.style.backgroundImage = 'url(https://3.bp.blogspot.com/-JA34A9q4P6I/T9hrbkjs_jI/AAAAAAAAAr4/cWDyQS5nf8w/s1600/sunny-sky+(22).jpg)';
+                    } else if ( desc == '02n') {
+                        document.body.style.backgroundImage = 'url()';
+                    } else if ( desc == '03d') {
+                        document.body.style.backgroundImage = 'url()';
+                    } else if ( desc == '04d') {
+                        document.body.style.backgroundImage = 'url()';
+                    } else if ( desc == '04n') {
+                        document.body.style.backgroundImage = 'url()';
+                    } else if ( desc == '09d') {
+                        document.body.style.backgroundImage = 'url()';
+                    } else if ( desc == '10d') {
+                        document.body.style.backgroundImage = 'url()';
+                    } else if ( desc == '10n') {
+                        document.body.style.backgroundImage = 'url()';
+                    } else if ( desc == '11d') {
+                        document.body.style.backgroundImage = 'url()';
+                    } else if ( desc == '11n') {
+                        document.body.style.backgroundImage = 'url()';
+                    } else if ( desc == '13d') {
+                        document.body.style.backgroundImage = 'url()';
+                    } else if ( desc == '13d') {
+                        document.body.style.backgroundImage = 'url()';
+                    } else if ( desc == '50d') {
+                        document.body.style.backgroundImage = 'url()';
+                    } else if ( desc == '50n') {
+                        document.body.style.backgroundImage = 'url()';
+                    } 
+                } 
+            </script>
+            
             <head>
                 <title>Weather status</title>
                 <style>
@@ -168,10 +204,9 @@
          </table>
     </xsl:template>
 
-
     <xsl:template match="cities/city">
             <!-- Datos de la tabla -->
-        <tr>
+        <tr onmouseout="changeBackground('{weather/@icon}')">
             <td>
                 <a href="https://www.accuweather.com/en/search-locations?query={name}"><xsl:value-of select="name"/></a></td>
             <td><xsl:value-of select="temperature/text()"/><xsl:text> </xsl:text><xsl:value-of select="temperature/@unit"/></td>
@@ -179,7 +214,7 @@
             <td><xsl:value-of select="humidity"/><xsl:text> </xsl:text><xsl:value-of select="humidity/@unit"/></td>
             <td><xsl:value-of select="pressure"/><xsl:text> </xsl:text> <xsl:value-of select="pressure/@unit"/></td>
             <td><xsl:value-of select="clouds"/></td>
-            <td> <img src="http://openweathermap.org/img/wn/{weather/@icon}@2x.png" alt="alternatetext" width="35" height="35"/> </td>   
+            <td> <img id="weather_desc" src="http://openweathermap.org/img/wn/{weather/@icon}@2x.png" alt="alternatetext" width="35" height="35"/> </td>   
             <!-- <xsl:value-of select="weather"/>    Lo ponemos? -->
         </tr>
     </xsl:template>
