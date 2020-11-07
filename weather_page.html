@@ -1,9 +1,4 @@
-<?xml version="1.0"?>
-<!DOCTYPE html>
-<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-    <xsl:template match="results">
-        <html>
-           <style>
+<html><style>
 
             html {
                 margin-left: auto;
@@ -89,9 +84,7 @@
               text-decoration: none;
             }
 
-            </style>
-
-            <script type="text/javascript">
+            </style><script type="text/javascript">
       
                 function changeBackground(desc)
                 {
@@ -139,104 +132,80 @@
                     document.body.style.backgroundImage = '';
 
                 }
-            </script>
-            
-            <head>
-                <title>Weather status</title>
-                <style>
-                </style>
-            </head>
-            <body>
-                <xsl:choose>
-                    <xsl:when test="count(//results/error) > 0">
-                        <h1 class="title">No Cities shown.</h1>
-                        <table class="ErrorTable">
-                            <tr>
-                                <th>Error</th>
-                            </tr>
-                            <tbody>
-                                <xsl:apply-templates select="error"/>
-                            </tbody>
-                        </table>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <h1 class="title">Weather status on 
-                            <xsl:value-of select="count(//results/country/cities/city)"></xsl:value-of>  
-                            <xsl:choose> 
-                                <xsl:when test="count(//results/country/cities/city) > 1"> 
-                                    Cities 
-                                </xsl:when>
-                                <xsl:otherwise> 
-                                    City
-                                </xsl:otherwise> 
-                            </xsl:choose>
-                            around the World
-                        </h1>
-                        <xsl:apply-templates select="country"/>
-                        <h3 class="subsubtitle">Click a city for more info about its current weather.</h3>
-                    </xsl:otherwise>                
-                </xsl:choose>
-            </body>
-        </html> 
-    </xsl:template>
-
-    <xsl:template match="error">
-        <tr>
-            <td><xsl:value-of select="./text()"/></td>
-        </tr>
-    </xsl:template>
-
-    <xsl:template match="country">
-        <!-- Tabla -->
-        <h2  class="subtitle">Weather on <xsl:value-of select="count(./cities/city)"/> 
-            <xsl:choose> 
-                <xsl:when test="count(./cities/city) > 1"> 
-                    cities 
-                </xsl:when>
-                <xsl:otherwise> 
-                    city
-                </xsl:otherwise> 
-            </xsl:choose>
-            <xsl:choose> 
-                <xsl:when test=" ./cities/city/name/text() = 'Globe'">
-                
-                </xsl:when>
-                <xsl:otherwise> 
-                    of <xsl:value-of select="./name"/>
-                </xsl:otherwise> 
-            </xsl:choose>
-        </h2>
-
-        <table>
-
-            <tr>
-                <th>City</th>
-                <th>Temperature</th>
-                <th>Feels like</th>
-                <th>Humidity</th>
-                <th>Pressure</th>
-                <th>Clouds</th>
-                <th>Weather</th>
+            </script><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Weather status</title><style></style></head>
+   <body>
+      <h1 class="title">Weather status on 
+         5 
+         Cities 
+         
+         around the World
+         
+      </h1>
+      <h2 class="subtitle">Weather on 5 
+         cities 
+          
+         of Denmark
+      </h2>
+      <table>
+         <tr>
+            <th>City</th>
+            <th>Temperature</th>
+            <th>Feels like</th>
+            <th>Humidity</th>
+            <th>Pressure</th>
+            <th>Clouds</th>
+            <th>Weather</th>
+         </tr>
+         <tbody>
+            <tr onmousemove="changeBackground('50n')" onmouseout="restoreBackground()">
+               <td><a href="https://www.accuweather.com/en/search-locations?query=Lang%C3%A5">Langå</a></td>
+               <td>280.29 kelvin</td>
+               <td>278.39 kelvin</td>
+               <td>93 %</td>
+               <td>1024 hPa</td>
+               <td>clear sky</td>
+               <td><img src="http://openweathermap.org/img/wn/50n@2x.png" alt="alternatetext" width="35" height="35"></td>
             </tr>
-            <tbody>
-                <xsl:apply-templates select="cities/city"/>
-            </tbody>
-         </table>
-    </xsl:template>
-
-    <xsl:template match="cities/city">
-            <!-- Datos de la tabla -->
-        <tr onmousemove="changeBackground('{weather/@icon}')" onmouseout="restoreBackground()">
-            <td>
-                <a href="https://www.accuweather.com/en/search-locations?query={name}"><xsl:value-of select="name"/></a></td>
-            <td><xsl:value-of select="temperature/text()"/><xsl:text> </xsl:text><xsl:value-of select="temperature/@unit"/></td>
-            <td><xsl:value-of select="feels_like/text()"/>  <xsl:text> </xsl:text> <xsl:value-of select="feels_like/@unit"/></td>   
-            <td><xsl:value-of select="humidity"/><xsl:text> </xsl:text><xsl:value-of select="humidity/@unit"/></td>
-            <td><xsl:value-of select="pressure"/><xsl:text> </xsl:text> <xsl:value-of select="pressure/@unit"/></td>
-            <td><xsl:value-of select="clouds"/></td>
-            <td> <img src="http://openweathermap.org/img/wn/{weather/@icon}@2x.png" alt="alternatetext" width="35" height="35"/> </td> 
-        </tr>
-    </xsl:template>
-
-
-</xsl:stylesheet>
+            <tr onmousemove="changeBackground('02n')" onmouseout="restoreBackground()">
+               <td><a href="https://www.accuweather.com/en/search-locations?query=Nyborg">Nyborg</a></td>
+               <td>280.35 kelvin</td>
+               <td>278.17 kelvin</td>
+               <td>100 %</td>
+               <td>1024 hPa</td>
+               <td>few clouds</td>
+               <td><img src="http://openweathermap.org/img/wn/02n@2x.png" alt="alternatetext" width="35" height="35"></td>
+            </tr>
+            <tr onmousemove="changeBackground('50n')" onmouseout="restoreBackground()">
+               <td><a href="https://www.accuweather.com/en/search-locations?query=Thur%C3%B8 By">Thurø By</a></td>
+               <td>279.9 kelvin</td>
+               <td>278.1 kelvin</td>
+               <td>93 %</td>
+               <td>1024 hPa</td>
+               <td>clear sky</td>
+               <td><img src="http://openweathermap.org/img/wn/50n@2x.png" alt="alternatetext" width="35" height="35"></td>
+            </tr>
+            <tr onmousemove="changeBackground('50n')" onmouseout="restoreBackground()">
+               <td><a href="https://www.accuweather.com/en/search-locations?query=Svendborg">Svendborg</a></td>
+               <td>279.75 kelvin</td>
+               <td>277.98 kelvin</td>
+               <td>93 %</td>
+               <td>1024 hPa</td>
+               <td>clear sky</td>
+               <td><img src="http://openweathermap.org/img/wn/50n@2x.png" alt="alternatetext" width="35" height="35"></td>
+            </tr>
+            <tr onmousemove="changeBackground('02n')" onmouseout="restoreBackground()">
+               <td><a href="https://www.accuweather.com/en/search-locations?query=Nyborg Kommune">Nyborg Kommune</a></td>
+               <td>280.45 kelvin</td>
+               <td>278.27 kelvin</td>
+               <td>100 %</td>
+               <td>1024 hPa</td>
+               <td>few clouds</td>
+               <td><img src="http://openweathermap.org/img/wn/02n@2x.png" alt="alternatetext" width="35" height="35"></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3 class="subsubtitle">Click a city for more info about its current weather.</h3>
+   </body>
+</html>
