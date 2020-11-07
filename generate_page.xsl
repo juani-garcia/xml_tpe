@@ -102,33 +102,43 @@
                     } else if ( desc == '02d') {  
                         document.body.style.backgroundImage = 'url(https://3.bp.blogspot.com/-JA34A9q4P6I/T9hrbkjs_jI/AAAAAAAAAr4/cWDyQS5nf8w/s1600/sunny-sky+(22).jpg)';
                     } else if ( desc == '02n') {
-                        document.body.style.backgroundImage = 'url()';
+                        document.body.style.backgroundImage = 'url(https://wallpapercave.com/wp/wp5882380.jpg)';
                     } else if ( desc == '03d') {
-                        document.body.style.backgroundImage = 'url()';
+                        document.body.style.backgroundImage = 'url(https://wallpapercave.com/uwp/uwp70544.jpeg)';
+                    } else if ( desc == '03n') {
+                        document.body.style.backgroundImage = 'url(https://wallpapercave.com/wp/wp6707920.jpg)';
                     } else if ( desc == '04d') {
-                        document.body.style.backgroundImage = 'url()';
+                        document.body.style.backgroundImage = 'url(https://wallpapercave.com/uwp/uwp32790.jpeg)';
                     } else if ( desc == '04n') {
-                        document.body.style.backgroundImage = 'url()';
+                        document.body.style.backgroundImage = 'url(https://wallpapercave.com/wp/wp6707920.jpg)';
                     } else if ( desc == '09d') {
-                        document.body.style.backgroundImage = 'url()';
+                        document.body.style.backgroundImage = 'url(https://wallpapercave.com/wp/wp7226273.jpg)';
+                    } else if ( desc == '09n') {
+                        document.body.style.backgroundImage = 'url(https://wallpapercave.com/wp/wp7226273.jpg)';
                     } else if ( desc == '10d') {
-                        document.body.style.backgroundImage = 'url()';
+                        document.body.style.backgroundImage = 'url(https://wallpapercave.com/wp/wp7507143.jpg)';
                     } else if ( desc == '10n') {
-                        document.body.style.backgroundImage = 'url()';
+                        document.body.style.backgroundImage = 'url(https://wallpapercave.com/wp/Z0kmvgB.jpg)';
                     } else if ( desc == '11d') {
-                        document.body.style.backgroundImage = 'url()';
+                        document.body.style.backgroundImage = 'url(https://wallpapercave.com/wp/wp4552596.jpg)';
                     } else if ( desc == '11n') {
-                        document.body.style.backgroundImage = 'url()';
+                        document.body.style.backgroundImage = 'url(https://wallpapercave.com/wp/uotoh0J.jpg)';
                     } else if ( desc == '13d') {
-                        document.body.style.backgroundImage = 'url()';
-                    } else if ( desc == '13d') {
-                        document.body.style.backgroundImage = 'url()';
+                        document.body.style.backgroundImage = 'url(https://wallpapercave.com/wp/wp6919041.jpg)';
+                    } else if ( desc == '13n') {
+                        document.body.style.backgroundImage = 'url(https://wallpapercave.com/wp/wp6919423.jpg)';
                     } else if ( desc == '50d') {
-                        document.body.style.backgroundImage = 'url()';
+                        document.body.style.backgroundImage = 'url(https://wallpapercave.com/wp/wp4155383.jpg)';
                     } else if ( desc == '50n') {
-                        document.body.style.backgroundImage = 'url()';
+                        document.body.style.backgroundImage = 'url(https://wallpapercave.com/wp/wp4155380.jpg)';
                     } 
                 } 
+
+                function restoreBackground() {
+
+                    document.body.style.backgroundImage = '';
+
+                }
             </script>
             
             <head>
@@ -187,8 +197,18 @@
                     city
                 </xsl:otherwise> 
             </xsl:choose>
-            of <xsl:value-of select="./name"/></h2>
+            <xsl:choose> 
+                <xsl:when test=" ./cities/city/name/text() = 'Globe'">
+                
+                </xsl:when>
+                <xsl:otherwise> 
+                    of <xsl:value-of select="./name"/>
+                </xsl:otherwise> 
+            </xsl:choose>
+        </h2>
+
         <table>
+
             <tr>
                 <th>City</th>
                 <th>Temperature</th>
@@ -206,7 +226,7 @@
 
     <xsl:template match="cities/city">
             <!-- Datos de la tabla -->
-        <tr onmouseout="changeBackground('{weather/@icon}')">
+        <tr onmousemove="changeBackground('{weather/@icon}')" onmouseout="restoreBackground()">
             <td>
                 <a href="https://www.accuweather.com/en/search-locations?query={name}"><xsl:value-of select="name"/></a></td>
             <td><xsl:value-of select="temperature/text()"/><xsl:text> </xsl:text><xsl:value-of select="temperature/@unit"/></td>
@@ -214,8 +234,7 @@
             <td><xsl:value-of select="humidity"/><xsl:text> </xsl:text><xsl:value-of select="humidity/@unit"/></td>
             <td><xsl:value-of select="pressure"/><xsl:text> </xsl:text> <xsl:value-of select="pressure/@unit"/></td>
             <td><xsl:value-of select="clouds"/></td>
-            <td> <img id="weather_desc" src="http://openweathermap.org/img/wn/{weather/@icon}@2x.png" alt="alternatetext" width="35" height="35"/> </td>   
-            <!-- <xsl:value-of select="weather"/>    Lo ponemos? -->
+            <td> <img src="http://openweathermap.org/img/wn/{weather/@icon}@2x.png" alt="alternatetext" width="35" height="35"/> </td> 
         </tr>
     </xsl:template>
 
