@@ -69,8 +69,6 @@
             }
 
             img {
-                margin-left: 14.5px;
-                margin-right: auto;
                 vertical-align: middle;
                 text-align: center;
             }
@@ -234,7 +232,15 @@
             <td><xsl:value-of select="humidity"/><xsl:text> </xsl:text><xsl:value-of select="humidity/@unit"/></td>
             <td><xsl:value-of select="pressure"/><xsl:text> </xsl:text> <xsl:value-of select="pressure/@unit"/></td>
             <td><xsl:value-of select="clouds"/></td>
-            <td> <img src="http://openweathermap.org/img/wn/{weather/@icon}@2x.png" alt="alternatetext" width="35" height="35"/> </td> 
+
+            <td style="text-align: center;">
+                <figure>
+                    <img src="http://openweathermap.org/img/wn/{weather/@icon}@2x.png" alt="fig_not_found" width="35" height="35"/>
+                  <figcaption><xsl:value-of select="weather"/></figcaption>
+                </figure>
+               </td>
+
+            <!-- <td> <img src="http://openweathermap.org/img/wn/{weather/@icon}@2x.png" alt="alternatetext" width="35" height="35"/> </td>  -->
         </tr>
     </xsl:template>
 
