@@ -12,9 +12,13 @@
                 text-align: center;
             }
 
-            .title{
+            .title {
                 margin-bottom: 15px;
                 margin-top: 80px;
+            }
+
+            h3 {
+                margin-bottom: 30px;
             }
 
             .title, .subtitle, .subsubtitle {
@@ -30,7 +34,7 @@
             }
 
             body {
-              background: #820157;
+              background: #565c5e;
               font-family: 'Open Sans', sans-serif;
             }
             table {
@@ -130,6 +134,10 @@
                     } else if ( desc == '50n') {
                         document.body.style.backgroundImage = 'url(https://wallpapercave.com/wp/wp4155380.jpg)';
                     } 
+                    else if ( desc == 'error') {
+                        document.body.style.backgroundImage = 'url(https://wallpapercave.com/wp/wp4632024.jpg)';
+                    } 
+
                 } 
 
                 function restoreBackground() {
@@ -148,7 +156,7 @@
                 <xsl:choose>
                     <xsl:when test="count(//results/error) > 0">
                         <h1 class="title">No Cities shown.</h1>
-                        <table class="ErrorTable">
+                        <table class="ErrorTable"  onmousemove="changeBackground('error')" onmouseout="restoreBackground()">
                             <tr>
                                 <th>Error</th>
                             </tr>
@@ -239,8 +247,6 @@
                   <figcaption><xsl:value-of select="weather"/></figcaption>
                 </figure>
                </td>
-
-            <!-- <td> <img src="http://openweathermap.org/img/wn/{weather/@icon}@2x.png" alt="alternatetext" width="35" height="35"/> </td>  -->
         </tr>
     </xsl:template>
 
