@@ -1,6 +1,6 @@
 #!/bin/bash
 
-gcc test.c -o test.exe
+gcc -std="c99" test.c -o test.exe
 if [[ $# -ne 3 ]]
 then
     printf "<results>\n\t<error>Three arguments needed</error>\n</results>" > ./weather_data.xml
