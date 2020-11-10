@@ -1,6 +1,5 @@
 #!/bin/bash
 
-gcc test.c -o test.exe
 if [[ $# -ne 3 ]]
 then
     printf "<results>\n\t<error>Three arguments needed</error>\n</results>" > ./weather_data.xml
@@ -12,7 +11,6 @@ else
         java net.sf.saxon.Query extract_weather_data.xq > weather_data.xml
         rm ./data/data.xml
     fi
-    rm ./test.exe
 fi
 java net.sf.saxon.Transform -s:weather_data.xml -xsl:generate_page.xsl -o:weather_page.html 
 rm ./weather_data.xml
