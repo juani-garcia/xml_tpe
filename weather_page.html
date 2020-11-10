@@ -1,9 +1,4 @@
-<?xml version="1.0"?>
-<!DOCTYPE html>
-<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-    <xsl:template match="results">
-        <html>
-           <style>
+<html><style>
 
             html {
                 margin-left: auto;
@@ -91,9 +86,7 @@
               text-decoration: none;
             }
 
-            </style>
-
-            <script type="text/javascript">
+            </style><script type="text/javascript">
       
                 function changeBackground(desc)
                 {
@@ -145,110 +138,95 @@
                     document.body.style.backgroundImage = '';
 
                 }
-            </script>
-            
-            <head>
-                <title>Weather status</title>
-                <style>
-                </style>
-            </head>
-            <body>
-                <xsl:choose>
-                    <xsl:when test="count(//results/error) > 0">
-                        <h1 class="title">No Cities shown.</h1>
-                        <table class="ErrorTable"  onmousemove="changeBackground('error')" onmouseout="restoreBackground()">
-                            <tr>
-                                <th>Error</th>
-                            </tr>
-                            <tbody>
-                                <xsl:apply-templates select="error"/>
-                            </tbody>
-                        </table>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <h1 class="title">Weather status on 
-                            <xsl:value-of select="count(//results/country/cities/city)"></xsl:value-of>  
-                            <xsl:choose> 
-                                <xsl:when test="count(//results/country/cities/city) > 1"> 
-                                    Cities 
-                                </xsl:when>
-                                <xsl:otherwise> 
-                                    City
-                                </xsl:otherwise> 
-                            </xsl:choose>
-                            around the World
-                        </h1>
-                        <xsl:apply-templates select="country"/>
-                        <h3 class="subsubtitle">Click a city for more info about its current weather.</h3>
-                    </xsl:otherwise>                
-                </xsl:choose>
-            </body>
-        </html> 
-    </xsl:template>
-
-    <xsl:template match="error">
-        <tr>
-            <td><xsl:value-of select="./text()"/></td>
-        </tr>
-    </xsl:template>
-
-    <xsl:template match="country">
-        <!-- Tabla -->
-        <h2  class="subtitle">Weather on <xsl:value-of select="count(./cities/city)"/> 
-            <xsl:choose> 
-                <xsl:when test="count(./cities/city) > 1"> 
-                    cities 
-                </xsl:when>
-                <xsl:otherwise> 
-                    city
-                </xsl:otherwise> 
-            </xsl:choose>
-            <xsl:choose> 
-                <xsl:when test=" ./cities/city/name/text() = 'Globe'">
-                
-                </xsl:when>
-                <xsl:otherwise> 
-                    of <xsl:value-of select="./name"/>
-                </xsl:otherwise> 
-            </xsl:choose>
-        </h2>
-
-        <table>
-
-            <tr>
-                <th>City</th>
-                <th>Temperature</th>
-                <th>Feels like</th>
-                <th>Humidity</th>
-                <th>Pressure</th>
-                <th>Clouds</th>
-                <th>Weather</th>
-            </tr>
-            <tbody>
-                <xsl:apply-templates select="cities/city"/>
-            </tbody>
-         </table>
-    </xsl:template>
-
-    <xsl:template match="cities/city">
-            <!-- Datos de la tabla -->
-        <tr onmousemove="changeBackground('{weather/@icon}')" onmouseout="restoreBackground()">
-            <td>
-                <a href="https://www.accuweather.com/en/search-locations?query={name}"><xsl:value-of select="name"/></a></td>
-            <td><xsl:value-of select="temperature/text()"/><xsl:text> </xsl:text><xsl:value-of select="temperature/@unit"/></td>
-            <td><xsl:value-of select="feels_like/text()"/>  <xsl:text> </xsl:text> <xsl:value-of select="feels_like/@unit"/></td>   
-            <td><xsl:value-of select="humidity"/><xsl:text> </xsl:text><xsl:value-of select="humidity/@unit"/></td>
-            <td><xsl:value-of select="pressure"/><xsl:text> </xsl:text> <xsl:value-of select="pressure/@unit"/></td>
-            <td><xsl:value-of select="clouds"/></td>
-
-            <td style="text-align: center;">
-                <figure>
-                    <img src="http://openweathermap.org/img/wn/{weather/@icon}@2x.png" alt="fig_not_found" width="35" height="35"/>
-                  <figcaption><xsl:value-of select="weather"/></figcaption>
-                </figure>
+            </script><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Weather status</title><style></style></head>
+   <body>
+      <h1 class="title">Weather status on 
+         5 
+         Cities 
+         
+         around the World
+         
+      </h1>
+      <h2 class="subtitle">Weather on 5 
+         cities 
+          
+         of Argentina
+      </h2>
+      <table>
+         <tr>
+            <th>City</th>
+            <th>Temperature</th>
+            <th>Feels like</th>
+            <th>Humidity</th>
+            <th>Pressure</th>
+            <th>Clouds</th>
+            <th>Weather</th>
+         </tr>
+         <tbody>
+            <tr onmousemove="changeBackground('02d')" onmouseout="restoreBackground()">
+               <td><a href="https://www.accuweather.com/en/search-locations?query=Pl%C3%A1tanos">Plátanos</a></td>
+               <td>293.82 kelvin</td>
+               <td>291.21 kelvin</td>
+               <td>70 %</td>
+               <td>1015 hPa</td>
+               <td>few clouds</td>
+               <td style="text-align: center;">
+                  <figure><img src="http://openweathermap.org/img/wn/02d@2x.png" alt="fig_not_found" width="35" height="35"><figcaption>few clouds</figcaption>
+                  </figure>
                </td>
-        </tr>
-    </xsl:template>
-
-
-</xsl:stylesheet>
+            </tr>
+            <tr onmousemove="changeBackground('02d')" onmouseout="restoreBackground()">
+               <td><a href="https://www.accuweather.com/en/search-locations?query=Juan Mar%C3%ADa Guti%C3%A9rrez">Juan María Gutiérrez</a></td>
+               <td>293.84 kelvin</td>
+               <td>294.68 kelvin</td>
+               <td>68 %</td>
+               <td>1019 hPa</td>
+               <td>few clouds</td>
+               <td style="text-align: center;">
+                  <figure><img src="http://openweathermap.org/img/wn/02d@2x.png" alt="fig_not_found" width="35" height="35"><figcaption>few clouds</figcaption>
+                  </figure>
+               </td>
+            </tr>
+            <tr onmousemove="changeBackground('02d')" onmouseout="restoreBackground()">
+               <td><a href="https://www.accuweather.com/en/search-locations?query=Villa Giambruno">Villa Giambruno</a></td>
+               <td>293.94 kelvin</td>
+               <td>291.59 kelvin</td>
+               <td>70 %</td>
+               <td>1015 hPa</td>
+               <td>few clouds</td>
+               <td style="text-align: center;">
+                  <figure><img src="http://openweathermap.org/img/wn/02d@2x.png" alt="fig_not_found" width="35" height="35"><figcaption>few clouds</figcaption>
+                  </figure>
+               </td>
+            </tr>
+            <tr onmousemove="changeBackground('02d')" onmouseout="restoreBackground()">
+               <td><a href="https://www.accuweather.com/en/search-locations?query=Villa San Francisco">Villa San Francisco</a></td>
+               <td>293.92 kelvin</td>
+               <td>291.33 kelvin</td>
+               <td>70 %</td>
+               <td>1015 hPa</td>
+               <td>few clouds</td>
+               <td style="text-align: center;">
+                  <figure><img src="http://openweathermap.org/img/wn/02d@2x.png" alt="fig_not_found" width="35" height="35"><figcaption>few clouds</figcaption>
+                  </figure>
+               </td>
+            </tr>
+            <tr onmousemove="changeBackground('02d')" onmouseout="restoreBackground()">
+               <td><a href="https://www.accuweather.com/en/search-locations?query=Bosques">Bosques</a></td>
+               <td>293.96 kelvin</td>
+               <td>291.78 kelvin</td>
+               <td>70 %</td>
+               <td>1015 hPa</td>
+               <td>few clouds</td>
+               <td style="text-align: center;">
+                  <figure><img src="http://openweathermap.org/img/wn/02d@2x.png" alt="fig_not_found" width="35" height="35"><figcaption>few clouds</figcaption>
+                  </figure>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+      <h3 class="subsubtitle">Click a city for more info about its current weather.</h3>
+   </body>
+</html>
